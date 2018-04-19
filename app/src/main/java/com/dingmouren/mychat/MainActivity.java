@@ -16,48 +16,19 @@ import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 
+/**
+ * 主界面
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        frameLayout = findViewById(R.id.frame_layout);
 
     }
 
-    public void login(View view){
-        final String account = "test_3";
-        final String token = "4565206";
-        AbortableFuture<LoginInfo> loginRequest = NIMClient.getService(AuthService.class).login(new LoginInfo(account,token));
-        loginRequest.setCallback(new RequestCallback<LoginInfo>() {
-            @Override
-            public void onSuccess(LoginInfo loginInfo) {
-                Log.e(TAG,"onSuccess:"+loginInfo.getAccount()+" "+loginInfo.getAppKey()+"  "+loginInfo.getToken());
-                NimUIKit.setAccount(loginInfo.getAccount());
-                NimUIKit.startP2PSession(getApplicationContext(),"test_2");
-            }
-
-            @Override
-            public void onFailed(int code) {
-                Log.e(TAG,"onFailed:"+code);
-            }
-
-            @Override
-            public void onException(Throwable throwable) {
-                Log.e(TAG,"onException:"+throwable.getMessage());
-            }
-        });
-
-
-    }
-
-    public void sessionToTest3(View view){
-
-
-    }
 
 
     /**

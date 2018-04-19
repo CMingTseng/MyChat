@@ -62,7 +62,7 @@ public class MyApplication extends Application {
         config.ledOnMs = 1000;
         config.ledOffMs = 1500;
         // 通知铃声的uri字符串
-        config.notificationSound = "android.resource://com.netease.nim.demo/raw/msg";
+        config.notificationSound = "android.resource://com.dingmouren.mychat/raw/msg";
         options.statusBarNotificationConfig = config;
 
         // 配置保存图片，文件，log 等数据的目录
@@ -103,7 +103,14 @@ public class MyApplication extends Application {
      * @return
      */
     private LoginInfo loginInfo() {
-        return null;
+        String account = NimPreferences.getUserAccount();
+        String token = NimPreferences.getUserToken();
+
+        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
+            return new LoginInfo(account, token);
+        } else {
+            return null;
+        }
     }
 
     /**

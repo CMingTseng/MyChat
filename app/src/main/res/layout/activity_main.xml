@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
    >
+<!--actionbar-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="?actionBarSize"
+        android:background="@color/main_color"
         >
-        <FrameLayout
-            android:id="@+id/frame_layout"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="登录"
-            android:onClick="login"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="打开与test3的聊天界面"
-            android:onClick="sessionToTest3"
+            android:layout_height="match_parent"
+            android:text="MyChat"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             />
     </LinearLayout>
 
+    <!---->
 
-</ScrollView>
+</RelativeLayout>
