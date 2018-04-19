@@ -2,6 +2,7 @@
 ## 集成
 
 1.以导入moudle的方式导入项目uikit
+
 2.在主项目的AndroidManifest.xml中需要修改的地方（也就是本项目的app项目）
 ```
 
