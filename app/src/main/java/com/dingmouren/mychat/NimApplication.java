@@ -24,7 +24,7 @@ import java.io.IOException;
  * Created by Administrator on 2018/4/18.
  */
 
-public class MyApplication extends Application {
+public class NimApplication extends Application {
     public static Application sApplication;
     @Override
     public void onCreate() {
@@ -44,6 +44,7 @@ public class MyApplication extends Application {
 
             initUIKit();
 
+            NimSessionHelper.init();
         }
     }
 

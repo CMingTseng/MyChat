@@ -38,6 +38,6 @@ public class NimPreferences {
     }
 
     static SharedPreferences getSharedPreferences() {
-        return MyApplication.sApplication.getSharedPreferences("nim", Context.MODE_PRIVATE);
+        return NimApplication.sApplication.getSharedPreferences("nim", Context.MODE_PRIVATE);
     }
 }
