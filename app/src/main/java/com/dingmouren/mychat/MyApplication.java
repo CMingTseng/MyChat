@@ -145,7 +145,6 @@ public class MyApplication extends Application {
 
     private void initUIKit() {
         NimUIKit.init(this,buildUIKitOptions());
-//        SessionHelper.init();// IM 会话窗口的定制初始化。
     }
 
     /**

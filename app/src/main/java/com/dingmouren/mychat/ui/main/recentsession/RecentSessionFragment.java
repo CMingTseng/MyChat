@@ -55,12 +55,14 @@ public class RecentSessionFragment extends RecentContactsFragment {
         }
 
         @Override
-        public void onItemClick(RecentContact recent) {
+        public void onItemClick(RecentContact recent) {//最近会话列表条目的点击事件
+
             switch (recent.getSessionType()){
                 case P2P:
                     NimUIKit.startP2PSession(getActivity(),recent.getContactId());
                     break;
                 case Team:
+                    NimUIKit.startTeamSession(getActivity(),recent.getContactId());
                     break;
                 case ChatRoom:
                     break;
