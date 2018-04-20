@@ -52,16 +52,37 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="fitXY"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_message_black_24dp"
                     />
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="14dp"
+                    android:layout_height="28dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_triangle_left"
+                    android:src="@mipmap/ic_triangle_left"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_group_black_24dp"
+                    />
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_triangle_left"
+                    android:layout_alignParentRight="true"
                     />
             </RelativeLayout>
 
