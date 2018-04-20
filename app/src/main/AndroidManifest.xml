@@ -104,8 +104,8 @@
 
         <!-- - - - - - - - - - 与网易云信无关 - - - - - - - - - - - - -->
 
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.login.LoginActivity"/>
     </application>
 
 </manifest>

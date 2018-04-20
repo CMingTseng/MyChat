@@ -40,8 +40,13 @@ public class MyApplication extends Application {
 
         NIMClient.init(this,loginInfo(),options());//SDK初始化
 
-        if (NIMUtil.isMainProcess(this)) setUpMainProcess();//主线程中初始化的代码
+        if (NIMUtil.isMainProcess(this)) { //必须在主线程中初始化的部分
+
+            initUIKit();
+
+        }
     }
+
 
 
     /* - - - -- - - - - - - - 方法实现- - - - - - - - - - - - - - - -*/
@@ -113,29 +118,6 @@ public class MyApplication extends Application {
         }
     }
 
-    /**
-     * 主线程中初始化的代码
-     */
-    private void setUpMainProcess() {
-        // 初始化UIKit模块
-        initUIKit();
-    }
-
-    private void initUIKit() {
-        // 初始化
-        NimUIKit.init(this, buildUIKitOptions());
-    }
-
-    /**
-     * 创建UIKit的配置信息
-     * @return
-     */
-    private UIKitOptions buildUIKitOptions() {
-        UIKitOptions options = new UIKitOptions();
-        // 设置app图片/音频/日志等缓存目录
-        options.appCacheDir = Environment.getDownloadCacheDirectory() + "/app";
-        return options;
-    }
 
     /**
      * 配置 APP 保存图片/语音/文件/log等数据的目录
@@ -159,5 +141,23 @@ public class MyApplication extends Application {
 
         return storageRootPath;
     }
+
+
+    private void initUIKit() {
+        NimUIKit.init(this,buildUIKitOptions());
+//        SessionHelper.init();// IM 会话窗口的定制初始化。
+    }
+
+    /**
+     * 创建UIKit的配置信息
+     * @return
+     */
+    private UIKitOptions buildUIKitOptions() {
+        UIKitOptions options = new UIKitOptions();
+        // 设置app图片/音频/日志等缓存目录
+        options.appCacheDir = Environment.getDownloadCacheDirectory() + "/app";
+        return options;
+    }
+
 }
 

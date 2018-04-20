@@ -7,8 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Window;
 
+import com.dingmouren.mychat.ui.login.LoginActivity;
+import com.dingmouren.mychat.ui.main.MainActivity;
 import com.netease.nim.uikit.api.NimUIKit;
 
 /**
@@ -45,6 +46,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private boolean isLogined() {
         String account = NimPreferences.getUserAccount();
         String token = NimPreferences.getUserToken();
+        NimUIKit.setAccount(account);
         Log.e(TAG,account +"  "+token);
         return !TextUtils.isEmpty(account) && !TextUtils.isEmpty(token);
     }

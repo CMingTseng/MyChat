@@ -8,6 +8,7 @@
    >
 <!--actionbar-->
     <LinearLayout
+        android:id="@+id/action_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@color/main_color"
@@ -23,6 +24,24 @@
             />
     </LinearLayout>
 
-    <!---->
+    <!--显示界面-->
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/action_bar_layout"
+        android:layout_above="@+id/nav_layout"
+        />
 
+    <!--底部导航栏-->
+    <LinearLayout
+        android:id="@+id/nav_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_color"
+        android:orientation="horizontal"
+        >
+
+    </LinearLayout>
 </RelativeLayout>

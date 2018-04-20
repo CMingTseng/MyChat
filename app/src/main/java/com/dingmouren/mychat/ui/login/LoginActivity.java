@@ -1,4 +1,4 @@
-package com.dingmouren.mychat;
+package com.dingmouren.mychat.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.netease.nimlib.sdk.NIMClient;
+import com.dingmouren.mychat.NimPreferences;
+import com.dingmouren.mychat.R;
+import com.dingmouren.mychat.ui.main.MainActivity;
+import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nimlib.sdk.RequestCallback;
-import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 
 /**
@@ -66,33 +68,36 @@ public class LoginActivity extends AppCompatActivity {
      * @param account
      * @param password
      */
-    private void toLogin(String account, String password) {
-        NIMClient.getService(AuthService.class)
-                .login(new LoginInfo(account,password))
-                .setCallback(new RequestCallback<LoginInfo>(){
+    private void toLogin(final String account, String password) {
+        NimUIKit.login(new LoginInfo(account, password), new RequestCallback<LoginInfo>() {
+            @Override
+            public void onSuccess(LoginInfo loginInfo) {
+                Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
 
-                    @Override
-                    public void onSuccess(LoginInfo loginInfo) {
-                        Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-                        Log.e(TAG,"account:"+loginInfo.getAccount()+" token:"+loginInfo.getToken());
 
-                        NimPreferences.saveUserAccount(loginInfo.getAccount());
-                        NimPreferences.saveUserToken(loginInfo.getToken());
+                String accout = loginInfo.getAccount();
+                String token = loginInfo.getToken();
+                Log.e(TAG,"account:"+account+" token:"+token);
+                NimPreferences.saveUserAccount(accout);
+                NimPreferences.saveUserToken(token);
 
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                        finish();
-                    }
+                NimUIKit.setAccount(accout);
 
-                    @Override
-                    public void onFailed(int i) {
-                        Toast.makeText(LoginActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
-                    }
+                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                finish();
+            }
 
-                    @Override
-                    public void onException(Throwable throwable) {
-                        Toast.makeText(LoginActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
-                    }
-                });
+            @Override
+            public void onFailed(int i) {
+                Toast.makeText(LoginActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                Toast.makeText(LoginActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
