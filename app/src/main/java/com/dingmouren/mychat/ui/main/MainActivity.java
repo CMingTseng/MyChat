@@ -1,5 +1,6 @@
 package com.dingmouren.mychat.ui.main;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.dingmouren.mychat.R;
 import com.dingmouren.mychat.ui.main.recentsession.RecentSessionFragment;
@@ -42,15 +44,17 @@ public class MainActivity extends UI implements View.OnClickListener {
     private static final String TAG = "MainActivity";
 
     private FrameLayout mFrameLayout;
-    private Button mBtnRecentSession;
-    private Button mBtnContacts;
     private ImageView mImgSearch;
+    private RelativeLayout mRelaRecentSession;
+    private ImageView mImgRecentSessionLeftArrow;
+    private RelativeLayout mRelaContacts;
+    private ImageView mImgContactsLeftArrow;
 
     private FragmentManager mFragmentManager;
     private Fragment mCurrentFragment;//当前显示的fragment
     private Fragment mRecentSessionFragment;//最近会话列表
     private Fragment mContactsFragment;//通讯录列表
-    private List<Fragment> mFragments = new ArrayList<>();
+    private List<Fragment> mFragments = new ArrayList<>();//用于切换Fragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,14 +86,16 @@ public class MainActivity extends UI implements View.OnClickListener {
 
     private void initView() {
         mFrameLayout = findViewById(R.id.frame_layout);
-        mBtnRecentSession = findViewById(R.id.btn_recent_session);
-        mBtnContacts = findViewById(R.id.btn_contacts);
         mImgSearch = findView(R.id.img_search);
+        mRelaRecentSession = findViewById(R.id.rela_recent_session);
+        mImgRecentSessionLeftArrow = findViewById(R.id.recent_session_left_arrow);
+        mRelaContacts = findViewById(R.id.rela_contacts);
+        mImgContactsLeftArrow = findViewById(R.id.contacts_left_arrow);
     }
 
     private void initListener(){
-        mBtnRecentSession.setOnClickListener(this);
-        mBtnContacts.setOnClickListener(this);
+        mRelaRecentSession.setOnClickListener(this);
+        mRelaContacts.setOnClickListener(this);
         mImgSearch.setOnClickListener(this);
     }
 
@@ -119,14 +125,14 @@ public class MainActivity extends UI implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_recent_session://消息界面
-                mBtnRecentSession.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
-                mBtnContacts.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
+            case R.id.rela_recent_session://消息界面
+                mImgRecentSessionLeftArrow.setVisibility(View.VISIBLE);
+                mImgContactsLeftArrow.setVisibility(View.INVISIBLE);
                 switchFragment(0,v);
                 break;
-            case R.id.btn_contacts://联系人界面
-                mBtnRecentSession.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
-                mBtnContacts.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+            case R.id.rela_contacts://联系人界面
+                mImgRecentSessionLeftArrow.setVisibility(View.INVISIBLE);
+                mImgContactsLeftArrow.setVisibility(View.VISIBLE);
                 switchFragment(1,v);
                 break;
             case R.id.img_search://打开搜索界面
@@ -140,6 +146,7 @@ public class MainActivity extends UI implements View.OnClickListener {
         mFragmentManager.beginTransaction()
                 .hide(mCurrentFragment)
                 .show(mFragments.get(index))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
         mCurrentFragment = mFragments.get(index);
     }
