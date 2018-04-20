@@ -1,6 +1,7 @@
 package com.dingmouren.mychat.ui.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -13,9 +14,11 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.dingmouren.mychat.R;
 import com.dingmouren.mychat.ui.main.recentsession.RecentSessionFragment;
+import com.dingmouren.mychat.ui.search.SearchActivity;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.business.recent.RecentContactsCallback;
 import com.netease.nim.uikit.business.recent.RecentContactsFragment;
@@ -41,6 +44,7 @@ public class MainActivity extends UI implements View.OnClickListener {
     private FrameLayout mFrameLayout;
     private Button mBtnRecentSession;
     private Button mBtnContacts;
+    private ImageView mImgSearch;
 
     private FragmentManager mFragmentManager;
     private Fragment mCurrentFragment;//当前显示的fragment
@@ -80,11 +84,13 @@ public class MainActivity extends UI implements View.OnClickListener {
         mFrameLayout = findViewById(R.id.frame_layout);
         mBtnRecentSession = findViewById(R.id.btn_recent_session);
         mBtnContacts = findViewById(R.id.btn_contacts);
+        mImgSearch = findView(R.id.img_search);
     }
 
     private void initListener(){
         mBtnRecentSession.setOnClickListener(this);
         mBtnContacts.setOnClickListener(this);
+        mImgSearch.setOnClickListener(this);
     }
 
 
@@ -113,15 +119,18 @@ public class MainActivity extends UI implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_recent_session:
+            case R.id.btn_recent_session://消息界面
                 mBtnRecentSession.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
                 mBtnContacts.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
                 switchFragment(0,v);
                 break;
-            case R.id.btn_contacts:
+            case R.id.btn_contacts://联系人界面
                 mBtnRecentSession.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
                 mBtnContacts.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
                 switchFragment(1,v);
+                break;
+            case R.id.img_search://打开搜索界面
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 break;
         }
     }
