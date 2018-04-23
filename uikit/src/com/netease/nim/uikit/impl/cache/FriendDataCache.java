@@ -1,6 +1,7 @@
 package com.netease.nim.uikit.impl.cache;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.common.util.log.LogUtil;
@@ -30,6 +31,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * Created by huangjun on 2015/9/14.
  */
 public class FriendDataCache {
+
+    private static final String TAG = "FriendDataCache";
 
     public static FriendDataCache getInstance() {
         return InstanceHolder.instance;
@@ -91,7 +94,6 @@ public class FriendDataCache {
     public List<String> getMyFriendAccounts() {
         List<String> accounts = new ArrayList<>(friendAccountSet.size());
         accounts.addAll(friendAccountSet);
-
         return accounts;
     }
 

@@ -1,4 +1,4 @@
-package com.dingmouren.mychat.ui.main.recentsession;
+package com.dingmouren.mychat.ui.main.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

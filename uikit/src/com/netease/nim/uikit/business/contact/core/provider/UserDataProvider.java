@@ -1,5 +1,7 @@
 package com.netease.nim.uikit.business.contact.core.provider;
 
+import android.util.Log;
+
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.business.contact.core.item.AbsContactItem;
 import com.netease.nim.uikit.business.contact.core.item.ContactItem;
@@ -15,6 +17,8 @@ import java.util.Iterator;
 import java.util.List;
 
 final class UserDataProvider {
+    private static final String TAG = "UserDataProvider";
+
     public static List<AbsContactItem> provide(TextQuery query) {
         List<UserInfo> sources = query(query);
         List<AbsContactItem> items = new ArrayList<>(sources.size());

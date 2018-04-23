@@ -1,4 +1,4 @@
-package com.dingmouren.mychat.ui.main;
+package com.dingmouren.mychat.ui.main.fragment;
 
 /**
  * Created by Administrator on 2018/4/20.

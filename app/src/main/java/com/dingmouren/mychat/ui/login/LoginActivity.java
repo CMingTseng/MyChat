@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText mEditAccount,mEditPassword;
     private Button mBtnLogin;
+    private Button mBtnRegist;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         mEditAccount = findViewById(R.id.edit_account);
         mEditPassword = findViewById(R.id.edit_password);
         mBtnLogin = findViewById(R.id.btn_login);
+        mBtnRegist = findViewById(R.id.btn_regist);
     }
 
     private void initListener() {
@@ -59,6 +61,13 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(password)) Toast.makeText(LoginActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
 
                 toLogin(account,password);//登录账户
+            }
+        });
+
+        mBtnRegist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,RegistActivity.class));
             }
         });
     }
