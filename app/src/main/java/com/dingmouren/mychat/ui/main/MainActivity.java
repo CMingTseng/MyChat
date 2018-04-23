@@ -141,6 +141,11 @@ public class MainActivity extends UI implements View.OnClickListener {
         }
     }
 
+    /**
+     * 切换fragment
+     * @param index
+     * @param view
+     */
     private void switchFragment(int index,View view) {
 
         mFragmentManager.beginTransaction()
