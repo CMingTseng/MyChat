@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.dingmouren.mychat.NimPreferences;
 import com.dingmouren.mychat.R;
 import com.dingmouren.mychat.ui.main.MainActivity;
+import com.dingmouren.mychat.ui.regist.RegistActivity;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.auth.LoginInfo;

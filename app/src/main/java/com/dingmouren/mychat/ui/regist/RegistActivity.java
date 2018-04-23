@@ -1,10 +1,9 @@
-package com.dingmouren.mychat.ui.login;
+package com.dingmouren.mychat.ui.regist;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dingmouren.mychat.R;
-import com.netease.nim.uikit.common.http.NimHttpClient;
 
 /**
  * Created by Administrator on 2018/4/23.

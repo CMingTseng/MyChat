@@ -31,5 +31,5 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.0.2'
     implementation project(':uikit')
     compile 'com.dingmouren.paletteimageview:paletteimageview:1.0.7'
-    implementation project(':commonlib')
+//    implementation project(':commonlib')
 }

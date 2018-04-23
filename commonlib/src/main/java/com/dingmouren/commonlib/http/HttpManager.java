@@ -8,6 +8,7 @@ import com.dingmouren.commonlib.http.interceptor.HttpCommonParamInterceptor;
 import com.dingmouren.commonlib.http.interceptor.HttpLogInterceptor;
 import com.dingmouren.commonlib.util.ApplicationUtils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class HttpManager {
     private static Map<String,String> sCommomParamsMap = new HashMap<>();//公共请求参数的map集合
 
     private static Map<String,String> sCommonHeadersMap = new HashMap<>();//公共头信息的map集合
+
 
     static {
 
