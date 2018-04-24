@@ -83,15 +83,16 @@ public class NimHttpClient {
 
     private Handler uiHandler;
 
-    public void init(Context context) {
+    public NimHttpClient init(Context context) {
         if (inited) {
-            return;
+            return null;
         }
 
         // init thread pool
         executor = new NimTaskExecutor("NIM_HTTP_TASK_EXECUTOR", new NimTaskExecutor.Config(1, 3, 10 * 1000, true));
         uiHandler = new Handler(context.getMainLooper());
         inited = true;
+        return null;
     }
 
     public void release() {
