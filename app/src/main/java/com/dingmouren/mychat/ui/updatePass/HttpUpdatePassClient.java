@@ -48,6 +48,9 @@ public class HttpUpdatePassClient {
 
     /**
      * 修改面成功返回的json:  reponse:{"code":200}  code:200
+     * @param account 用户账户
+     * @param password 新密码
+     * @param callback 回调
      */
     public void updatePassword(String account, String password, final HttpUpdatePassClientCallback<String> callback){
         String url = "https://api.netease.im/nimserver/user/update.action";
