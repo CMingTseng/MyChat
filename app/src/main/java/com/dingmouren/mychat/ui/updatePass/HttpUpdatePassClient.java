@@ -1,4 +1,4 @@
-package com.dingmouren.mychat.ui.regist;
+package com.dingmouren.mychat.ui.updatePass;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -7,6 +7,7 @@ import android.util.Log;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.dingmouren.mychat.NimApplication;
+import com.dingmouren.mychat.ui.regist.HttpRegistClient;
 import com.dingmouren.mychat.util.CheckSumBuilder;
 import com.netease.nim.uikit.common.http.NimHttpClient;
 import com.netease.nim.uikit.common.util.log.LogUtil;
@@ -20,16 +21,16 @@ import java.util.Map;
 
 /**
  * Created by Administrator on 2018/4/24.
- * 注册
+ * 更新用户密码，也就是token
  */
 
-public class HttpRegistClient {
+public class HttpUpdatePassClient {
 
-    private static final String TAG = "HttpRegistClient";
+    private static final String TAG = "HttpUpdatePassClient";
 
-    private static HttpRegistClient sInstance;
+    private static HttpUpdatePassClient sInstance;
 
-    public interface HttpClientCallback<T> {
+    public interface HttpUpdatePassClientCallback<T> {
         void onSuccess(T t);
 
         void onFailed(int code, String errorMsg);
@@ -37,30 +38,19 @@ public class HttpRegistClient {
     }
 
 
-    private HttpRegistClient(){NimHttpClient.getInstance().init(NimApplication.sApplication);}
+    private HttpUpdatePassClient(){
+        NimHttpClient.getInstance().init(NimApplication.sApplication);}
 
-    public static synchronized HttpRegistClient getInstance() {
-        if (sInstance == null) sInstance = new HttpRegistClient();
+    public static synchronized HttpUpdatePassClient getInstance() {
+        if (sInstance == null) sInstance = new HttpUpdatePassClient();
         return sInstance;
     }
 
     /**
-     * 注册
-     * 已经注册过返回的json: reponse:{"desc":"already register","code":414}  code:200
-     * 注册成功返回的json:  reponse:{"code":200,"info":{"token":"4565206","accid":"test_8","name":""}} code:200
-     * @param account 账户名
-     * @param nickName 昵称
-     * @param password 密码
-     * @param callback 回调
+     * 修改面成功返回的json:  reponse:{"code":200}  code:200
      */
-    public void register(String account, String nickName, String password, final HttpClientCallback<String> callback){
-        String url = "https://api.netease.im/nimserver/user/create.action";
-        password = MD5.getStringMD5(password);
-        try {
-            nickName = URLEncoder.encode(nickName, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    public void updatePassword(String account, String password, final HttpUpdatePassClientCallback<String> callback){
+        String url = "https://api.netease.im/nimserver/user/update.action";
 
         String appKey = readAppKey();
         String appSecret = "ad9c31435f94";
@@ -78,8 +68,7 @@ public class HttpRegistClient {
 
         /*参数*/
         StringBuilder body = new StringBuilder();
-            body.append("accid").append("=").append(account).append("&")
-                .append("name").append("=").append(nickName).append("&")
+        body.append("accid").append("=").append(account).append("&")
                 .append("token").append("=").append(password);
         String bodyString = body.toString();
 
@@ -98,19 +87,10 @@ public class HttpRegistClient {
                     return;
                 }
 
-                /*code等于200，解析返回的json*/
-                try {
-                    JSONObject resObj = JSONObject.parseObject(response);
-                    int resCode = resObj.getIntValue("code");
-                    if (resCode == 200) {
-                        callback.onSuccess(response);
-                    } else {
-                        String errorMsg = resObj.getString("desc");
-                        callback.onFailed(resCode, errorMsg);
-                    }
-                } catch (JSONException e) {
-                    callback.onFailed(-1, e.getMessage());
-                }
+                /*code等于200，就说明密码更改成功*/
+              if (code == 200){
+                  if (null != callback) callback.onSuccess("成功");
+              }
             }
         });
     }

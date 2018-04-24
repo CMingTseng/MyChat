@@ -1,5 +1,6 @@
 package com.dingmouren.mychat.ui.regist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +12,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
+import com.dingmouren.mychat.NimPreferences;
 import com.dingmouren.mychat.R;
+import com.dingmouren.mychat.ui.login.LoginActivity;
+import com.dingmouren.mychat.ui.main.MainActivity;
+import com.netease.nim.uikit.api.NimUIKit;
+
 
 /**
  * Created by Administrator on 2018/4/23.
+ * 注册界面
  */
 
 public class RegistActivity extends AppCompatActivity {
@@ -72,9 +80,29 @@ public class RegistActivity extends AppCompatActivity {
         }
 
         HttpRegistClient.getInstance().register(account, nickName, pass, new HttpRegistClient.HttpClientCallback<String>(){
+            // {"code":200,"info":{"token":"4565206","accid":"test_8","name":""}}
             @Override
-            public void onSuccess(String s) {
-                Log.e(TAG,"注册成功:"+s);
+            public void onSuccess(String response) {
+                Log.e(TAG,"注册成功:"+response);
+                String account = "";
+                String token = "";
+                /*解析json*/
+                JSONObject jsonObject = (JSONObject) JSONObject.parse(response);
+                JSONObject infoObject = (JSONObject) JSONObject.parse(jsonObject.getString("info"));
+                account = infoObject.getString("accid");
+                token = infoObject.getString("token");
+                Log.e(TAG,"注册成功 account:"+account +" token:"+token);
+
+                 /*本地存储用户账户信息，用于登录的*/
+                NimPreferences.saveUserAccount(account);
+                NimPreferences.saveUserToken(token);
+
+                /*设置当前应用的用户*/
+                NimUIKit.setAccount(account);
+
+                startActivity(new Intent(RegistActivity.this,MainActivity.class));
+                finish();
+
             }
 
             @Override

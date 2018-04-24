@@ -84,13 +84,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginInfo loginInfo) {
                 Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
 
-
+                /*本地存储用户账户信息，用于登录的*/
                 String accout = loginInfo.getAccount();
                 String token = loginInfo.getToken();
                 Log.e(TAG,"account:"+account+" token:"+token);
                 NimPreferences.saveUserAccount(accout);
                 NimPreferences.saveUserToken(token);
 
+                /*设置当前应用的用户*/
                 NimUIKit.setAccount(accout);
 
                 startActivity(new Intent(LoginActivity.this,MainActivity.class));

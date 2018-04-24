@@ -11,17 +11,20 @@ import android.widget.Button;
 
 import com.dingmouren.mychat.R;
 import com.dingmouren.mychat.ui.login.LoginActivity;
+import com.dingmouren.mychat.ui.updatePass.UpdatePassActivity;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.auth.AuthService;
 
 /**
  * Created by Administrator on 2018/4/23.
+ * 设置界面
  */
 
 public class SettingFragment extends Fragment {
 
     private View mRootView;
-    private Button mBtnLogOut;
+    private Button mBtnLogOut;//注销用户
+    private Button mBtnUpdatePass;//更新用户密码，也就是token
 
     @Nullable
     @Override
@@ -38,15 +41,24 @@ public class SettingFragment extends Fragment {
 
     private void initView(View view) {
         mBtnLogOut = view.findViewById(R.id.btn_log_out);
+        mBtnUpdatePass = view.findViewById(R.id.btn_update_pass);
     }
 
     private void initListener() {
+        /*注销用户*/
         mBtnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NIMClient.getService(AuthService.class).logout();
                 startActivity(new Intent(getContext(),LoginActivity.class));
                 getActivity().finish();
+            }
+        });
+        /*更新用户密码，token*/
+        mBtnUpdatePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),UpdatePassActivity.class));
             }
         });
     }

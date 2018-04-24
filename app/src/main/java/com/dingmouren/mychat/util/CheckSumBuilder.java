@@ -1,4 +1,4 @@
-package com.dingmouren.mychat.ui.regist;
+package com.dingmouren.mychat.util;
 
 import java.security.MessageDigest;
 

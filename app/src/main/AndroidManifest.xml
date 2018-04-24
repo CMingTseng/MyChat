@@ -110,6 +110,7 @@
         <activity android:name=".ui.profile.AccountProfileActivity"/>
         <activity android:name=".ui.profile.EditAccountProfileActivity"/>
         <activity android:name=".ui.search.SearchActivity"/>
+        <activity android:name=".ui.updatePass.UpdatePassActivity"/>
     </application>
 
 </manifest>

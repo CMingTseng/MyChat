@@ -25,6 +25,7 @@ import com.netease.nimlib.sdk.uinfo.UserService;
 
 /**
  * Created by Administrator on 2018/4/20.
+ * 搜索好友界面
  */
 
 public class SearchActivity extends AppCompatActivity {
