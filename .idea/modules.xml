@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MyChat.iml" filepath="$PROJECT_DIR$/MyChat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/commonlib/commonlib.iml" />
+      <module fileurl="file://D:\Android\MyChat\commonlib\commonlib.iml" filepath="D:\Android\MyChat\commonlib\commonlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/uikit/uikit.iml" filepath="$PROJECT_DIR$/uikit/uikit.iml" />
     </modules>
   </component>
